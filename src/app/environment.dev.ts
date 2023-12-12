@@ -4,5 +4,6 @@ export const Env = {
   // baseAPi: "https://wayr.link",  //checking edit only
   // baseAPi: "https://www.lushgreen.click",
   // baseAPi: "https://agriexpo.click", //expo
-  baseAPi: "https://agriexpo.cloud", //expo
+  // baseAPi: "https://agriexpo.cloud", //expo
+  baseAPi: "https://uyarchicrm.click"
 };

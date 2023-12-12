@@ -12,6 +12,8 @@ constructor(private http:HttpClient){}
  create_user(data:any,id:any){
   return this.http.post(this.baseApi+'/v2/demostream/buyer/join/stream?id='+id,data)
  }
-
+ get_prop(data:any){
+  return this.http.post(this.baseApi+'/v2/demostream/buyer/get/property',data)
+ }
 
 }

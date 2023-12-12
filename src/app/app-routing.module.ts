@@ -6,7 +6,7 @@ import { StreamViewComponent } from './stream-view/stream-view/stream-view.compo
 
 const routes: Routes = [
   { path: 'b/:id', component: RegUserComponent },
-  { path: 'property', component: PropertyViewComponent },
+  { path: 'property/:id', component: PropertyViewComponent },
   { path: 'stream', component: StreamViewComponent }
 
 ];

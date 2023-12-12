@@ -65,6 +65,7 @@
             <label style="width: 500px">Name :</label>
             <input
               type="text"
+              [class.error-box]="submitted && form.get('name')?.invalid"
               formControlName="name"
               placeholder="Enter Name"
              
@@ -81,6 +82,7 @@
             <label>Number :</label>
             <input
             type="tel"
+            [class.error-box]="submitted && form.get('phoneNumber')?.invalid"
             formControlName="phoneNumber"
               placeholder="Enter Mobile Number"
             
@@ -110,15 +112,13 @@
               </svg>
             </div> -->
           </div>
-          <!-- <div class="inputs error-msg">
+          <div class="inputs error-msg">
             <label style="width: 500px"></label>
-            <p *ngIf="emailSubmit && loginForm.get('password')?.invalid">
-              Password is required !
-            </p>
-            <p *ngIf="notfound">Please Enter a Valid Password</p>
-            <p *ngIf="Emailnotfound">Enter a Registered Email Id</p>
-            <p *ngIf="deActive">{{deActive}}</p>
-          </div> -->
+           
+           
+            <p *ngIf="submitted && form.get('phoneNumber')?.hasError('minlength')">Enter valid Number!</p>
+        
+          </div>
   
           <!-- <p class="forgot-password" >Forgot Password !</p> -->
   

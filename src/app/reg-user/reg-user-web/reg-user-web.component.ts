@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthserviceService } from 'src/app/service/authservice.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { AuthserviceService } from 'src/app/service/authservice.service';
 export class RegUserWebComponent implements OnInit {
   id:any;
   submitted=false
-   constructor(private arouter:ActivatedRoute,private service:AuthserviceService){
+   constructor(private arouter:ActivatedRoute,
+    private router:Router,private service:AuthserviceService){
     this.arouter.params.subscribe(params=>{
       this.id = params['id']
     })
@@ -21,18 +22,21 @@ export class RegUserWebComponent implements OnInit {
     }
    }
    form = new FormGroup({
-    phoneNumber:new FormControl ('',[Validators.required,Validators.pattern('/^[6]\d{9}$/'),Validators.minLength(10),Validators.maxLength(10)]),
+    phoneNumber:new FormControl ('',[Validators.required,Validators.pattern('^[6-9]{1}[0-9]{9}$'),Validators.minLength(10),Validators.maxLength(10)]),
     name:new FormControl('',Validators.required)
    })
   ngOnInit(): void {
-   
+ 
   }
   submit(){
+    this.submitted=true
     if(this.form.valid){
       console.log(this.form.value)
-      // this.service.create_user(this.form.value,this.id).subscribe((res:any)=>{
-      //   localStorage.setItem('buyerVerfiyId',res._id)
-      // })
+      this.service.create_user(this.form.value,this.id).subscribe((res:any)=>{
+        localStorage.setItem('buyerVerfiyId',res._id)
+        this.router.navigateByUrl('property/'+this.id)
+        this.submitted=false
+      })
     }
   }
 
