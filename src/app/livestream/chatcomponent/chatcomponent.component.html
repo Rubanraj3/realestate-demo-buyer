@@ -1,0 +1,79 @@
+<div class="chat-box" *ngIf="innerWidth=='lap' && sub !=null">
+    <div class="contant-box">
+        <ol style="    margin-top: 12px;">
+            <ng-container *ngFor="let item of this.addpro.value;index as i">
+                <li class="message-others" *ngIf="item.type=='others'">
+                    <div style="height: 38px;;color: white;border-radius: 50%;width: 38px;"
+                        ngClass="{{item.userType=='buyer' ?'buyer':'supplier'}}">
+                        {{item.userName !=null?'':item.userName[0]}}
+                    </div>
+                    <div>
+                        <p>{{item.userName}}</p>
+                        <span style=" word-break: break-word; ">{{item.text}}</span>
+                    </div>
+                </li>
+                <li class="message-me" *ngIf="item.type=='me'">
+                    <div>
+                        <span style=" word-break: break-word; "> {{item.text}}</span>
+                    </div>
+                </li>
+            </ng-container>
+        </ol>
+    </div>
+    <form (submit)="send_now()" style="padding-top: 33px;" *ngIf="!sub.joindedUserBan && this.sub.stream.chat">
+        <div class="chat-box-form" style="height: 100%;">
+            <div class="fixed-box">
+                <input type="text" name="" id="chat-boxs" [formControl]="type_message"
+                    placeholder="Enter Message ..........">
+                <button type="submit">
+                    <i class="fa fa-send"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="!this.sub.stream.chat">
+        <p style="text-align: center;font-size: 12px;">Chat is disabled from the Host side</p>
+    </div>
+
+</div>
+<div class="mobile-chat" *ngIf="innerWidth=='tab' || innerWidth =='mobile' && sub !=null">
+    <div class="contant-box" style="height: 283px;">
+        <ol style="padding: 0 14px">
+            <ng-container *ngFor="let item of this.addpro.value;index as i">
+
+                <li class="message-others" *ngIf="item.type=='others'">
+                    <div style="height: 34px;;color: white;border-radius: 50%;display: flex;justify-content: center;align-items: center;width: 34px;"
+                        ngClass="{{item.userType=='buyer' ?'buyer':'supplier'}}">
+                        {{item.userName[0]}}
+                    </div>
+                    <div>
+                        <p>{{item.userName}}</p>
+                        <span style=" word-break: break-word;color: white; ">{{item.text}}</span>
+                    </div>
+                </li>
+                <li class="message-me" *ngIf="item.type=='me'">
+                    <div>
+                        <span style=" word-break: break-word; "> {{item.text}}</span>
+                    </div>
+                </li>
+            </ng-container>
+
+        </ol>
+    </div>
+    <form (submit)="send_now()" *ngIf="this.sub.stream.chat">
+        <div class="chat-box-form" style="height: 100%;">
+            <div class="fixed-box" style="padding: 0 0px 7px 14px;">
+                <input style="border-radius: 12px; font-size:12px;padding-left:20px;height: 43px;" type="text"
+                    name="text" id="chat-boxs" [formControl]="type_message" placeholder="Type here ..........">
+                <button type="submit" style="font-size:21px;">
+                    <i class="fa fa-send"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="!this.sub.stream.chat">
+        <p
+            style="text-align: center;background: white;margin: 10px;padding: 10px;border-radius: 7px;margin-top: -11px;font-size: 12px;">
+            Chat is disabled from the Host side</p>
+    </div>
+</div>

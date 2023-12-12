@@ -1,0 +1,49 @@
+<div class="current-live-box">
+    <div class="stream-cart" *ngFor="let item of livestreams ; index as i">
+        <div class="stream-details">
+            <div class="left-view" [routerLink]="['/dashboard/currentlive/view/'+item._id]">
+                <div class="image-area">
+                    <img src="{{baseUrl+'/'+item.image}}" alt="">
+                </div>
+                <div class="content-area">
+                    <p>{{item.streamName}}</p>
+                    <!-- <br> -->
+                    <p class="product-list">{{item.productArray}}</p>
+                </div>
+            </div>
+            <div class="button-area">
+                <div class="time-details">
+                    <span class="stream-icons">
+                        <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.92308 3.72222L10.3436 1.27481C10.3974 1.2205 10.4659 1.18351 10.5404 1.16854C10.615 1.15356 10.6923 1.16126 10.7625 1.19067C10.8328 1.22007 10.8928 1.26986 10.9351 1.33375C10.9773 1.39764 10.9999 1.47276 11 1.54963V7.45037C10.9999 7.52724 10.9773 7.60236 10.9351 7.66625C10.8928 7.73014 10.8328 7.77993 10.7625 7.80933C10.6923 7.83874 10.615 7.84644 10.5404 7.83146C10.4659 7.81649 10.3974 7.7795 10.3436 7.72518L7.92308 5.27778M2.15385 8H6.76923C7.07525 8 7.36874 7.87708 7.58512 7.65829C7.80151 7.4395 7.92308 7.14275 7.92308 6.83333V2.16667C7.92308 1.85725 7.80151 1.5605 7.58512 1.34171C7.36874 1.12292 7.07525 1 6.76923 1H2.15385C1.84783 1 1.55434 1.12292 1.33795 1.34171C1.12157 1.5605 1 1.85725 1 2.16667V6.83333C1 7.14275 1.12157 7.4395 1.33795 7.65829C1.55434 7.87708 1.84783 8 2.15385 8Z"
+                                stroke="white" stroke-linecap="round" />
+                        </svg>
+                        <span class="status">
+                            <span class="live">
+                                Live
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="button-view">
+                    <button class="register-button" (click)="registerNow(item)"
+                        *ngIf="item.registerStatus=='Not Registered' || item.registerStatus=='Unregistered'">Register</button>
+                    <!-- <button class="rac-button">RAC</button>
+                    <button class="waiting-button">Waiting</button> -->
+                    <button class="watchlive-button"
+                        *ngIf="item.registerStatus=='Registered' && item.tokenGeneration && (currentTime < item.streamEnd_Time) &&  currentTime > item.startTime && item.goLive && item.eligible"
+                        (click)="watch_live(item)">Watch Live</button>
+                    <button class="waiting-button"
+                        *ngIf="item.registerStatus =='Registered' && !item.goLive || item.registerStatus =='Registered' && !item.eligible">
+                        {{item.viewstatus=='Confirmed'?'Confirmed':''}}
+                        {{item.viewstatus=='RAC'?'RAC':''}}
+                        {{item.viewstatus=='Waiting'?'WL':''}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

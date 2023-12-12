@@ -1,0 +1,11 @@
+<div (window:resize)="onResize($event)">
+  <div class="" *ngIf="innerWidth=='mobile'">
+    <app-small-viewcomponent></app-small-viewcomponent>
+  </div>
+  <div class="tab-view" *ngIf="innerWidth=='tab'">
+    <app-medium-viewcomponent></app-medium-viewcomponent>
+  </div>
+  <div class="laptop-view" *ngIf="innerWidth=='lap'">
+    <app-large-viewcomponent></app-large-viewcomponent>
+  </div>
+</div>

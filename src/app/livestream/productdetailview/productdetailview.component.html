@@ -1,0 +1,52 @@
+<div class="product-detail-view" *ngIf="viewProduct !=null">
+    <div class="header-view">
+        {{viewProduct.productTitle}}
+    </div>
+    <div id="demo" class="carousel" data-bs-ride="carousel" style="position: relative;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <video src="{{viewProduct.video}}" controls></video>
+            </div>
+            <div class="carousel-item" *ngFor=" let item of viewProduct.images">
+                <img src="{{baseUrl+'/'+item}}" alt="New York" class="d-block" style="width:100%">
+            </div>
+        </div>
+        <div class="scroll-control">
+            <button class="" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="product-details">
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td>Location :</td>
+                    <td>{{viewProduct.location}}</td>
+                </tr>
+                <tr>
+                    <td>Booking Amount :</td>
+                    <td>{{viewProduct.bookingAmount}}</td>
+                </tr>
+                <tr>
+                    <td>Minimum Lots :</td>
+                    <td>{{viewProduct.minLots}}</td>
+                </tr>
+                <tr>
+                    <td>Incremental lots :</td>
+                    <td>{{viewProduct.incrementalLots}}</td>
+                </tr>
+                <tr>
+                    <td>Description :</td>
+                </tr>
+
+                <p>{{viewProduct.discription}}</p>
+
+            </tbody>
+        </table>
+    </div>
+</div>
