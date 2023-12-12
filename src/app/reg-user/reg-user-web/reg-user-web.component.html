@@ -60,11 +60,12 @@
     Log In to post your property -->
       </h1>
       <div class="form">
-        <form >
-          <div class="inputs">
+        <form [formGroup]="form" >
+          <div class="inputs" >
             <label style="width: 500px">Name :</label>
             <input
-              type="name"
+              type="text"
+              formControlName="name"
               placeholder="Enter Name"
              
             />
@@ -80,6 +81,7 @@
             <label>Number :</label>
             <input
             type="tel"
+            formControlName="phoneNumber"
               placeholder="Enter Mobile Number"
             
              
@@ -121,7 +123,7 @@
           <!-- <p class="forgot-password" >Forgot Password !</p> -->
   
           <div class="inputs login-btn">
-            <button type="button" >Submit</button>
+            <button type="button" (click)="submit()" >Submit</button>
           </div>
         </form>
       </div>

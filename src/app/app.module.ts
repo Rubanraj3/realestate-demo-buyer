@@ -12,6 +12,8 @@ import { StreamViewWebComponent } from './stream-view/stream-view-web/stream-vie
 import { StreamViewComponent } from './stream-view/stream-view/stream-view.component';
 import { PropertyViewComponent } from './property-view/property-view.component';
 import { RegUserComponent } from './reg-user/reg-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from  '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RegUserComponent } from './reg-user/reg-user.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
