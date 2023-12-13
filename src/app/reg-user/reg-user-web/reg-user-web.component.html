@@ -81,6 +81,7 @@
           <div class="inputs pas">
             <label>Number :</label>
             <input
+            onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
             type="tel"
             [class.error-box]="submitted && form.get('phoneNumber')?.invalid"
             formControlName="phoneNumber"
@@ -116,7 +117,8 @@
             <label style="width: 500px"></label>
            
            
-            <p *ngIf="submitted && form.get('phoneNumber')?.hasError('minlength')">Enter valid Number!</p>
+            <!-- <p *ngIf="submitted && form.get('phoneNumber')?.hasError('minlength')">Enter valid Number!</p> -->
+            <p *ngIf="submitted && form.get('phoneNumber')?.hasError('pattern')">Invalid Number!</p>
         
           </div>
   
