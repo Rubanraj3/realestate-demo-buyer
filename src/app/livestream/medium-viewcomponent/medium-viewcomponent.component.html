@@ -79,13 +79,22 @@
                         </div>
                     </div>
                     <div class="view-page-blur">
+                        <div class="dommy-box" *ngIf="view_chat_now =='cart'" (click)="view_change('product')"> 
+
+                        </div>
+                        <div class="cart-view" *ngIf="view_chat_now =='cart'">
+                            <a style="position: absolute;z-index: 1;right: 5px;padding: 8px;z-index: 100000;" (click)="view_change('product')">
+                                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 1L8.5 8.5L1 1" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                    
+                            </a>
+                            <app-listproduct-mobile *ngIf="token_details !=null"
+                                [data]="token_details.post"></app-listproduct-mobile>
+                        </div>
                         <div class="footer-menu" style="    z-index: 100000;"
                             [ngClass]="view_chat_now=='cart' || view_chat_now== 'chat'?'card-page-open':''">
-                            <div class="cart-view" *ngIf="view_chat_now =='cart'">
-                                <!-- <app-viewcart *ngIf="view_chat_now && token_details !=null" [data]="id"
-                                    [sub]="token_details">
-                                </app-viewcart> -->
-                            </div>
 
                             <div class="footer-view" *ngIf="view_chat_now !='cart'">
                                 <div class="view-page">
@@ -94,26 +103,26 @@
                                             [data]="token_details"></app-listproduct>
                                     </div> -->
                                     <div class="chat-view" *ngIf="view_chat_now=='chat'">
-                                        <app-chatcomponent
-                                            *ngIf="view_chat_now && token_details !=null"
-                                            [data]="id" [sub]="token_details">
+                                        <app-chatcomponent *ngIf="view_chat_now && token_details !=null" [data]="id"
+                                            [sub]="token_details">
                                         </app-chatcomponent>
                                     </div>
 
                                 </div>
                                 <div class="icons-page">
                                     <ol class="right-icon-fonts">
-                                        <!-- <li style="position: relative;">
-                                            <a (click)="view_change('cart')" *ngIf="token_details.stream.transaction=='With Transaction'">
+                                        <li style="position: relative;">
+                                            <a (click)="view_change('cart')" style="padding: 13px 14px;">
                                                 <span *ngIf="cartCount !=0" class="chat-count"> {{cartCount}}</span>
-                                                <svg width="24" height="20" viewBox="0 0 24 20" fill="none"
+                                                <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
-                                                        d="M23.9478 4.39627L21.1565 13.4855C20.9478 14.1328 20.4 14.5643 19.7478 14.5643H8.97391C8.34783 14.5643 7.74783 14.1597 7.53913 13.5664L3.41739 2.15768H1.04348C0.469565 2.15768 0 1.6722 0 1.07884C0 0.485477 0.469565 0 1.04348 0H4.14783C4.5913 0 4.98261 0.29668 5.13913 0.728216L9.3913 12.4066H19.3043L21.5217 5.12448H9.23478C8.66087 5.12448 8.1913 4.639 8.1913 4.04564C8.1913 3.45228 8.66087 2.9668 9.23478 2.9668H22.9565C23.2957 2.9668 23.6087 3.1556 23.7913 3.42531C24 3.69502 24.0522 4.07261 23.9478 4.39627ZM9.49565 15.9938C9.05217 15.9938 8.6087 16.1826 8.29565 16.5062C7.98261 16.8299 7.8 17.2884 7.8 17.7469C7.8 18.2054 7.98261 18.6639 8.29565 18.9876C8.6087 19.3112 9.05217 19.5 9.49565 19.5C9.93913 19.5 10.3826 19.3112 10.6957 18.9876C11.0087 18.6639 11.1913 18.2054 11.1913 17.7469C11.1913 17.2884 11.0087 16.8299 10.6957 16.5062C10.3826 16.1826 9.93913 15.9938 9.49565 15.9938ZM18.8609 15.9938C18.4174 15.9938 17.9739 16.1826 17.6609 16.5062C17.3478 16.8299 17.1652 17.2884 17.1652 17.7469C17.1652 18.2054 17.3478 18.6639 17.6609 18.9876C17.9739 19.3112 18.4174 19.5 18.8609 19.5C19.3043 19.5 19.7478 19.3112 20.0609 18.9876C20.3739 18.6639 20.5565 18.2054 20.5565 17.7469C20.5565 17.2884 20.3739 16.8299 20.0609 16.5062C19.7478 16.1826 19.3043 15.9938 18.8609 15.9938Z"
-                                                        fill="black" />
+                                                        d="M1 8.61785L8.34687 1.27015C8.7079 0.909949 9.2921 0.909949 9.65231 1.27015L17 8.61785M2.84615 6.77169V15.0794C2.84615 15.5889 3.25969 16.0025 3.76923 16.0025H7.15385V12.0025C7.15385 11.4929 7.56738 11.0794 8.07692 11.0794H9.92308C10.4326 11.0794 10.8462 11.4929 10.8462 12.0025V16.0025H14.2308C14.7403 16.0025 15.1538 15.5889 15.1538 15.0794V6.77169M5.92308 16.0025H12.6923"
+                                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </a>
-                                        </li> -->
+                                        </li>
                                         <li style="position: relative;">
                                             <span *ngIf="chatCount !=0" class="chat-count"> {{chatCount}}</span>
                                             <a (click)="view_change('chat')"

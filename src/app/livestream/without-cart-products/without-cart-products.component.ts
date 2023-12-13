@@ -1,7 +1,7 @@
-import { Env } from 'src/app/environment';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { SubscriberserveService } from '../subscriberserve.service';
+import { Env } from 'src/app/environment.dev';
 
 @Component({
   selector: 'app-without-cart-products',

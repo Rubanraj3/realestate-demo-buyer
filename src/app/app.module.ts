@@ -9,6 +9,8 @@ import { PropertyViewWebComponent } from './property-view/property-view-web/prop
 import { PropertyViewMobileComponent } from './property-view/property-view-mobile/property-view-mobile.component';
 import { PropertyViewComponent } from './property-view/property-view.component';
 import { RegUserComponent } from './reg-user/reg-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from  '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RegUserComponent } from './reg-user/reg-user.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

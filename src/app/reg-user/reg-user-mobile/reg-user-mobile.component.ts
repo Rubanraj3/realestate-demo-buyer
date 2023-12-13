@@ -20,6 +20,6 @@ export class RegUserMobileComponent implements OnInit {
     })
   }
   get_user_info() {
-              
+
   }
 }

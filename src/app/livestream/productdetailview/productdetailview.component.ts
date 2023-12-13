@@ -1,7 +1,7 @@
-import { Env } from 'src/app/environment';
 import { Component, Input, OnInit } from '@angular/core';
 import { Livestreanservice } from '../livestream.service';
 import { SocketioService } from '../socketio.service';
+import { Env } from 'src/app/environment.dev';
 
 @Component({
   selector: 'app-productdetailview',

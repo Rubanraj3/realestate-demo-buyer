@@ -8,12 +8,11 @@ import { ListproductComponent } from './listproduct/listproduct.component';
 import { LargeViewcomponentComponent } from './large-viewcomponent/large-viewcomponent.component';
 import { MediumViewcomponentComponent } from './medium-viewcomponent/medium-viewcomponent.component';
 import { SmallViewcomponentComponent } from './small-viewcomponent/small-viewcomponent.component';
-import { ViewcartComponent } from './viewcart/viewcart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { CurrentlivestreamsComponent } from './currentlivestreams/currentlivestreams.component';
 import { WithoutCartProductsComponent } from './without-cart-products/without-cart-products.component';
 import { ProductdetailviewComponent } from './productdetailview/productdetailview.component';
+import { ListproductComponentMobile } from './listproduct-mobile/listproduct.component';
 
 
 @NgModule({
@@ -26,10 +25,9 @@ import { ProductdetailviewComponent } from './productdetailview/productdetailvie
     LargeViewcomponentComponent,
     MediumViewcomponentComponent,
     SmallViewcomponentComponent,
-    ViewcartComponent,
-    CurrentlivestreamsComponent,
     WithoutCartProductsComponent,
-    ProductdetailviewComponent
+    ProductdetailviewComponent,
+    ListproductComponentMobile
 
   ],
   imports: [

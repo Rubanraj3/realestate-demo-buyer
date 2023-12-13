@@ -1,4 +1,3 @@
-import { Env } from 'src/app/environment';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import AgoraRTC from 'agora-rtc-sdk-ng';
@@ -7,6 +6,7 @@ import { AgorastreamingService_sub } from '../agorastreaming.service';
 import { Livestreanservice } from '../livestream.service';
 import { SocketioService } from '../socketio.service';
 import { SubscriberserveService } from '../subscriberserve.service';
+import { Env } from 'src/app/environment.dev';
 declare let $: any;
 @Component({
   selector: 'app-large-viewcomponent',
@@ -51,30 +51,7 @@ export class LargeViewcomponentComponent implements OnInit {
     this.route.queryParamMap.subscribe((params: any) => {
       this.id = params.params.id;
 
-      // this.web.live_check_current(this.id).subscribe((res: any) => {
-      //   if (res.code != this.livecode) {
-      //     window.location.href = "/dashboard"
-      //   }
-      // })
-      // if (this.livecode == null) {
-      //   this.stream.currentLive.subscribe((res: any) => {
-      //     if (res != null) {
-      //       if (this.id == res.stream) {
-      //         this.livecode = res.code;
-      //       }
-      //       else {
-      //         this.livecode = Math.floor(100000 + Math.random() * 900000);
-      //         this.stream.currentLive.next({ code: this.livecode, stream: this.id })
-      //       }
-      //     }
-      //     else {
-      //       this.livecode = Math.floor(100000 + Math.random() * 900000);
-      //       this.stream.currentLive.next({ code: this.livecode, stream: this.id })
-      //     }
-      //   })
-      // }
       this.get_token_details();
-      // this.get_other_stream_list();
     });
 
     this.web.cartCount.subscribe((res: any) => {
@@ -134,15 +111,12 @@ export class LargeViewcomponentComponent implements OnInit {
 
     this.api.get_token_details_sub(this.id).subscribe((res: any) => {
       if (res.stream.status == 'Completed') {
-        window.close();
         this.router.navigateByUrl("/")
       }
 
       this.web.livejoined(this.id);
-      this.stream.update_AppID(res.appID.appID)
-      this.mute_audio = res.stream.audio;
-      this.mute_video = res.stream.video;
-      this.targetTime = res.demotoken.expirationTimestamp
+      this.stream.update_AppID(res.agora.appID)
+      this.targetTime = res.stream.end;
       this.tickTock();
       this.get_controls(res.stream._id)
       this.token_details = res;
@@ -151,14 +125,13 @@ export class LargeViewcomponentComponent implements OnInit {
         this.logout();
         this.router.navigateByUrl("/");
       })
-      this.web.getMessage_new_chat(this.token_details.chennel).subscribe((res: any) => {
+      this.web.getMessage_new_chat(this.token_details.demotoken.chennel).subscribe((res: any) => {
         if (this.view_chat_now != true) {
           this.chatCount++;
         }
       })
-      if (!this.expiered) {
-        this.joinCall(res.demotoken);
-      }
+      this.joinCall(res.demotoken);
+
       this.web.getMessage_userCount(this.token_details.chennel).subscribe(msg => {
       });
     });

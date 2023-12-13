@@ -20,7 +20,7 @@
             </ng-container>
         </ol>
     </div>
-    <form (submit)="send_now()" style="padding-top: 33px;" *ngIf="!sub.joindedUserBan && this.sub.stream.chat">
+    <form (submit)="send_now()" style="padding-top: 33px;">
         <div class="chat-box-form" style="height: 100%;">
             <div class="fixed-box">
                 <input type="text" name="" id="chat-boxs" [formControl]="type_message"
@@ -31,9 +31,9 @@
             </div>
         </div>
     </form>
-    <div *ngIf="!this.sub.stream.chat">
+    <!-- <div *ngIf="!this.sub.stream.chat">
         <p style="text-align: center;font-size: 12px;">Chat is disabled from the Host side</p>
-    </div>
+    </div> -->
 
 </div>
 <div class="mobile-chat" *ngIf="innerWidth=='tab' || innerWidth =='mobile' && sub !=null">
@@ -60,7 +60,7 @@
 
         </ol>
     </div>
-    <form (submit)="send_now()" *ngIf="this.sub.stream.chat">
+    <form (submit)="send_now()">
         <div class="chat-box-form" style="height: 100%;">
             <div class="fixed-box" style="padding: 0 0px 7px 14px;">
                 <input style="border-radius: 12px; font-size:12px;padding-left:20px;height: 43px;" type="text"
@@ -71,9 +71,9 @@
             </div>
         </div>
     </form>
-    <div *ngIf="!this.sub.stream.chat">
+    <!-- <div *ngIf="!this.sub.stream.chat">
         <p
             style="text-align: center;background: white;margin: 10px;padding: 10px;border-radius: 7px;margin-top: -11px;font-size: 12px;">
             Chat is disabled from the Host side</p>
-    </div>
+    </div> -->
 </div>

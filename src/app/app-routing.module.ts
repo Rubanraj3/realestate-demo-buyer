@@ -6,7 +6,7 @@ import { PropertyViewComponent } from './property-view/property-view.component';
 const routes: Routes = [
   { path: 'b/:id', component: RegUserComponent },
   { path: 'property', component: PropertyViewComponent },
-  // { path: 'stream', component: StreamViewComponent }
+  { path: 'stream', loadChildren: (() => import("./livestream/livestream.module").then((a: any) => a.LivestreamModule)) }
 
 ];
 

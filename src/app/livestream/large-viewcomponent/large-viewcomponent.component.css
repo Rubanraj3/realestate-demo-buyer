@@ -272,7 +272,7 @@ video {
     height: 100%;
     overflow: hidden;
     /* display: grid; */
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
 }
 
 .mute-message {

@@ -22,7 +22,7 @@
     position: relative;
     height: 100%;
     box-shadow: 0px 0px 8px 0px #00000040;
-    padding: 7px 10px;
+    /* padding: 7px 10px; */
 }
 
 
@@ -56,10 +56,11 @@
     flex-direction: column;
 }
 
-.view-conent h6:first-child{
+.view-conent h6:first-child {
     color: #394867;
     font-weight: 300;
 }
+
 .row .col-6,
 .row .col-12 {
     padding: 0;
@@ -81,6 +82,7 @@
     scrollbar-width: none;
     /* Firefox */
 }
+
 
 .intrested button{
     width: 96%;

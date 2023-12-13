@@ -1,4 +1,4 @@
-import { SocketioService } from './../socketio.service';
+import { SocketioService } from '../socketio.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { SubscriberserveService } from '../subscriberserve.service';
@@ -6,11 +6,11 @@ import { Env } from 'src/app/environment.dev';
 import { Livestreanservice } from '../livestream.service';
 
 @Component({
-  selector: 'app-listproduct',
+  selector: 'app-listproduct-mobile',
   templateUrl: './listproduct.component.html',
   styleUrls: ['./listproduct.component.css']
 })
-export class ListproductComponent implements OnInit {
+export class ListproductComponentMobile implements OnInit {
   @Input("data") streamDetails: any;
   baseURL = Env.baseAPi
   constructor(public Socket: SocketioService, private api: Livestreanservice) { }

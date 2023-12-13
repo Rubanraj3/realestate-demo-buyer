@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Env } from 'src/app/environment';
+import { Env } from '../environment.dev';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class Livestreanservice {
     return this.http.get(this.baseurl + "/v2/generateRTC/gettoken/byId?id=" + id)
   }
   get_token_details_sub(id: any) {
-    return this.http.get(this.baseurl + "/v2/demostream/get/buyer/token?id=" + id);
+    return this.http.get(this.baseurl + "/v2/demostream/buyer/stream/details?id=" + id);
   }
   get_token_details_host(id: any) {
     return this.http.get(this.baseurl + "/v2/generateRTC/gettoken/host/byId?id=" + id)
@@ -93,5 +93,10 @@ export class Livestreanservice {
 
   get_other_stream_details(id: any) {
     return this.http.get(this.baseurl + "/v1/ecomplan/on/going/stream?id=" + id)
+  }
+
+  interst_now(id: any) {
+    return this.http.post(this.baseurl + "/v2/demostream/buyer/interest/now", { id })
+
   }
 }

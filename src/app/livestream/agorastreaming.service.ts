@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Env } from 'src/app/environment';
 import { IUser } from './models';
+import { Env } from '../environment.dev';
 
 @Injectable({
   providedIn: 'root',

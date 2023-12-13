@@ -384,3 +384,18 @@
     justify-content: center;
     margin-bottom: 10px;
 }
+
+.cart-view {
+    position: fixed;
+    overflow: auto;
+    height: 500px;
+    bottom: 0;
+    z-index: 1000000000;
+}
+
+.dommy-box {
+    height:calc(100% - 500px);
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

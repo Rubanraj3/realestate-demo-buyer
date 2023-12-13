@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
-import { Env } from 'src/app/environment';
+import { Env } from '../environment.dev';
 
 @Injectable({
   providedIn: 'root'
@@ -191,6 +191,16 @@ export class SocketioService {
       });
       return () => {
         this.socket.disconnect();
+      }
+    });
+  }
+
+  stream_on_going(channel: any): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(channel + 'stream_on_going', (data: any) => {
+        observer.next(data);
+      });
+      return () => {
       }
     });
   }

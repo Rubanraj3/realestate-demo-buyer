@@ -2,21 +2,25 @@
 <div class="container-fluid" style="margin: 0;padding:0">
     <div class="col-12">
         <div class="livestreaming">
-            <div class="streaming-head" style="    display: flex;justify-content: space-between;width: 100%;padding-right: 7%;background-color: black;">
+            <div class="streaming-head"
+                style="    display: flex;justify-content: space-between;width: 100%;padding-right: 7%;background-color: black;">
                 <img style='width: 134px;' src="../../../../assets//images/logo-icon.png" alt="">
                 <div class="top-icon">
-                    <a [routerLink]="['/']" [routerLinkActive]="'active-menu'"  style="margin-left: 10px;color: #019444;" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-                    <a [routerLink]="['/myprofile']" [routerLinkActive]="'active-menu'" style="margin-left: 10px;color: #019444;" [routerLinkActiveOptions]="{ exact: true }">My Profile</a>
-                  </div>
+                    <a [routerLink]="['/']" [routerLinkActive]="'active-menu'" style="margin-left: 10px;color: #019444;"
+                        [routerLinkActiveOptions]="{ exact: true }">Home</a>
+                    <a [routerLink]="['/myprofile']" [routerLinkActive]="'active-menu'"
+                        style="margin-left: 10px;color: #019444;" [routerLinkActiveOptions]="{ exact: true }">My
+                        Profile</a>
+                </div>
             </div>
             <div class="streaming-area">
-                <!-- <div class="product-list-show">
+                <div class="product-list-show">
                     <div class="view_products" *ngIf="view_chat_now_cart =='product'" style="position: relative;">
-                        <app-listproduct *ngIf="token_details !=null" [data]="token_details"></app-listproduct>
+                        <app-listproduct *ngIf="token_details !=null" [data]="token_details.post"></app-listproduct>
                     </div>
                     <div class="view_products" *ngIf="view_chat_now_cart =='cart'" style="position: relative;">
-                        <app-viewcart *ngIf="token_details !=null" [data]="id" [sub]="token_details">
-                        </app-viewcart>
+                        <!-- <app-viewcart *ngIf="token_details !=null" [data]="id" [sub]="token_details">
+                        </app-viewcart> -->
                     </div>
                     <div class="view-product-details"
                         *ngIf="view_chat_now_cart =='productview' && open_product_view !=null">
@@ -32,12 +36,13 @@
                             *ngIf="open_product_view.cartQTY ==0">
                             Add to Cart</button>
                     </div>
-                </div> -->
-                <div class="streaming-area-view live-vidoos" style="width: 70%;">
+                </div>
+                <div class="streaming-area-view live-vidoos" style="width: 40%;">
                     <div class="parent-live-video">
                         <div class="content-view">
                             <!-- <p *ngIf="counter !=null" class="timer-view"> <i class="fa fa-eye"></i><b> 500</b></p> -->
-                            <p *ngIf="counter !=null" class="timer-view" style="background-color: #d40000;"><i class='fa fa-video-camera'></i>
+                            <p *ngIf="counter !=null" class="timer-view" style="background-color: #d40000;"><i
+                                    class='fa fa-video-camera'></i>
                                 <b> {{counter| formatTime}}</b>
                             </p>
                         </div>
@@ -96,7 +101,7 @@
                                         style="font-size: 12px;padding: 3px 6px;margin-left: 10px;background: #2192FF;color: white;border-radius: 6px;">{{chatCount}}
                                     </span></span> <i class="fa fa-angle-up"></i>
                             </h5>
-                            <div class="chat-view"  style="display: block;">
+                            <div class="chat-view" style="display: block;">
                                 <app-chatcomponent *ngIf="token_details !=null" [data]="id" [sub]="token_details">
                                 </app-chatcomponent>
                             </div>

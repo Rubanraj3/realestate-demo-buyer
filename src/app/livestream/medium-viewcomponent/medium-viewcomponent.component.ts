@@ -197,43 +197,27 @@ export class MediumViewcomponentComponent implements OnInit {
   get_token_details() {
     this.api.get_token_details_sub(this.id).subscribe((res: any) => {
       if (res.stream.status == 'Completed') {
-        window.close();
         this.router.navigateByUrl("/")
       }
-      // console.log(res)
-      // console.log(res)
       this.web.livejoined(this.id);
-      this.stream.update_AppID(res.appID.appID)
-      this.mute_audio = res.stream.audio;
-      this.mute_video = res.stream.video;
-      // console.log(res.stream.video, 899778)
-      // this.media_controls(res);
-      this.get_controls(res.stream._id)
-      // this.expiered_message(res);
-      this.targetTime = res.demotoken.expirationTimestamp
-      // console.log(res, 231983781, this.targetTime)
+      this.stream.update_AppID(res.agora.appID)
+      this.targetTime = res.stream.end;
       this.tickTock();
+      this.get_controls(res.stream._id)
       this.token_details = res;
-
       this.web.main_host_end_strem(res.demotoken.channel).subscribe((res: any) => {
         this.countDown?.unsubscribe()
         this.logout();
-        this.router.navigateByUrl("");
-        // this.web.liveleave(this.id)
+        this.router.navigateByUrl("/");
       })
-      this.web.getMessage_new_chat(this.token_details.stream.channel).subscribe((res: any) => {
-        // console.log(res, this.view_chat_now, 7777777777)
+      this.web.getMessage_new_chat(this.token_details.demotoken.chennel).subscribe((res: any) => {
         if (this.view_chat_now != true) {
           this.chatCount++;
         }
       })
-      if (!this.expiered) {
-        // console.log(res, 21312312)
-        this.joinCall(res.demotoken);
-      }
-      // console.log(this.token_details.chennel, 876781761261)
-      this.web.getMessage_userCount(this.token_details.stream.channel).subscribe(msg => {
-        // console.log(msg, 'asasasdassdas')
+      this.joinCall(res.demotoken);
+
+      this.web.getMessage_userCount(this.token_details.chennel).subscribe(msg => {
       });
     });
   }
@@ -326,7 +310,7 @@ export class MediumViewcomponentComponent implements OnInit {
     this.open_product_view = null;
   }
   add_to_cart_view(item: any) {
-    
+
     this.web.addToCart.next(item)
   }
 }
