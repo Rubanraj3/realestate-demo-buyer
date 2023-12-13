@@ -1,0 +1,176 @@
+<div class="container-fluid" style="margin: 0;padding:0">
+    <div class="row" style="margin: 0;">
+        <div class="col-12" style="margin: 0;padding:0">
+            <div class="livestreaming-box">
+                <div class="parent-live-video">
+                    <div class="content-view">
+                        <div class="top-view">
+                            <div style="display: flex; align-items: center;width: 75%;">
+                                <a (click)="back_button()">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"
+                                            fill="white" />
+                                    </svg>
+                                </a>
+                                <div class="stream-name" *ngIf="token_details !=null">
+                                    {{token_details.stream.streamName}}
+                                </div>
+                            </div>
+                            <div class="timer-box">
+                                <div class="timer" *ngIf="counter !=null">
+                                    <svg width="16" height="11" viewBox="0 0 16 11" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M15.3474 0.0916666L11.7895 2.58958V1.83333C11.7895 0.825 11.0316 0 10.1053 0H1.68421C0.757895 0 0 0.825 0 1.83333V9.16667C0 10.175 0.757895 11 1.68421 11H10.1053C11.0316 11 11.7895 10.175 11.7895 9.16667V8.41042L15.3474 10.9083C15.7474 11.1375 16 10.7479 16 10.5188V0.458333C16 0.229167 15.7684 -0.183333 15.3474 0.0916666ZM10.9474 9.16667C10.9474 9.67083 10.5684 10.0833 10.1053 10.0833H1.68421C1.22105 10.0833 0.842105 9.67083 0.842105 9.16667V1.83333C0.842105 1.32917 1.22105 0.916667 1.68421 0.916667H10.1053C10.5684 0.916667 10.9474 1.32917 10.9474 1.83333V9.16667ZM15.1579 9.69375L11.7895 7.33333V3.66667L15.1579 1.30625V9.69375Z"
+                                            fill="#FF0000" />
+                                    </svg>
+                                    {{counter |formatTime}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error-message-mute-audio">
+
+                    </div>
+                    <div class="error-message-mute-video">
+
+                    </div>
+                    <div class="row" style="height: 100%;padding: 0;margin:0">
+                        <ng-container
+                            *ngIf="stream.remoteUsers.length !=0 && stream.userCoubnt !=null && stream.userCoubnt !=0">
+                            <div *ngFor="let item of stream.remoteUsers; index as i"
+                                [ngClass]="stream.remoteUsers.length==3 && i==0 || stream.remoteUsers.length==3 && i==1 ?'col-6 '+item.class:'col-12 '+item.class"
+                                style="padding: 0;">
+                                <div style="width: 100%;height: 100%;position: relative;">
+                                    <div id="{{ 'remote-playerlist' + item.uid }}"
+                                        class="ui centered medium image subscriber-view">
+                                    </div>
+                                    <div class="mute-message" style="bottom: 10px;margin-bottom: 10px;z-index: 1000;">
+                                        <a *ngIf="item.audio">
+                                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M11.3374 12.7013C10.5418 13.1515 9.66293 13.4353 8.75422 13.5354V16.5938H7.24578V13.5354C5.71557 13.3639 4.28908 12.6774 3.20028 11.5886C2.11149 10.4999 1.42503 9.07336 1.25351 7.54315H2.77326C2.89085 8.35726 3.19697 9.13266 3.66725 9.80753C4.13753 10.4824 4.75895 11.0381 5.48198 11.4303C6.20501 11.8225 7.00967 12.0404 7.83181 12.0666C8.65396 12.0928 9.47086 11.9266 10.2174 11.5812L9.04761 10.4122C8.48586 10.5746 7.89403 10.6042 7.31888 10.4986C6.74373 10.393 6.20103 10.1551 5.73365 9.80364C5.26626 9.45221 4.88701 8.9969 4.62586 8.47368C4.36471 7.95047 4.22881 7.3737 4.22891 6.78893V5.59274L0 1.36459L1.06722 0.29737L16 15.2309L14.9328 16.2974L11.3374 12.7013ZM5.76223 7.12607L7.66286 9.0267C7.18459 8.95446 6.74202 8.73096 6.4 8.38893C6.05797 8.04691 5.83447 7.60434 5.76223 7.12607ZM13.5624 10.6807L12.474 9.59312C12.8579 8.9822 13.1196 8.28832 13.226 7.54315H14.7465C14.622 8.67196 14.2147 9.75111 13.5624 10.6807ZM11.3676 8.48668L10.2001 7.31915C10.2408 7.14869 10.2627 6.97221 10.2627 6.78893V3.77206C10.2632 3.24011 10.0763 2.72498 9.73476 2.31714C9.39324 1.90931 8.91895 1.63483 8.39518 1.54192C7.87141 1.44902 7.33166 1.54362 6.8707 1.80912C6.40975 2.07461 6.05707 2.49403 5.87461 2.9937L4.7463 1.86464C5.16497 1.1501 5.80721 0.593253 6.57387 0.280065C7.34052 -0.033124 8.18895 -0.0852363 8.98817 0.131773C9.78739 0.348783 10.493 0.822846 10.9959 1.48077C11.4989 2.1387 11.7713 2.9439 11.7711 3.77206V6.78893C11.772 7.37862 11.6332 7.96022 11.3676 8.48668Z"
+                                                    fill="white" />
+                                            </svg>
+
+                                        </a>
+                                        <a *ngIf="item.video">
+                                            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M12.2593 5.74074L15.9886 2.01136C16.0715 1.92859 16.1771 1.87223 16.2919 1.84941C16.4068 1.82659 16.5259 1.83832 16.6341 1.88313C16.7423 1.92794 16.8348 2.00381 16.9 2.10117C16.9651 2.19852 16.9999 2.313 17 2.43012V11.4217C16.9999 11.5389 16.9651 11.6533 16.9 11.7507C16.8348 11.848 16.7423 11.9239 16.6341 11.9687C16.5259 12.0135 16.4068 12.0253 16.2919 12.0024C16.1771 11.9796 16.0715 11.9233 15.9886 11.8405L12.2593 8.11111M9.2963 12.2593H3.37037C2.89887 12.2593 2.44669 12.072 2.11329 11.7386C1.77989 11.4052 1.59259 10.953 1.59259 10.4815V4.55556M11.7386 11.7386L12.8519 12.8519M11.7386 11.7386C12.0601 11.417 12.2593 10.9721 12.2593 10.4815V3.37037C12.2593 2.89887 12.072 2.44669 11.7386 2.11329C11.4052 1.77989 10.953 1.59259 10.4815 1.59259H3.37037C2.8797 1.59259 2.43486 1.7917 2.11328 2.11328M11.7386 11.7386L2.11328 2.11328M2.11328 2.11328L1 1"
+                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <div *ngIf="stream.remoteUsers.length ==0 && stream.userCoubnt ==0 && stream.userCoubnt !=null"
+                            class="seller-not-found">
+                            <div class="not-found">
+                                <h4>Please Wait!</h4>
+                                <h6>( seller will re-join soon... )</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-page-blur">
+                        <div class="dommy-box" *ngIf="view_chat_now =='cart'" (click)="view_change('product')"> 
+
+                        </div>
+                        <div class="cart-view" *ngIf="view_chat_now =='cart'">
+                            <a style="position: absolute;z-index: 1;right: 5px;padding: 8px;z-index: 100000;" (click)="view_change('product')">
+                                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 1L8.5 8.5L1 1" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                    
+                            </a>
+                            <app-listproduct-mobile *ngIf="token_details !=null"
+                                [data]="token_details.post"></app-listproduct-mobile>
+                        </div>
+                        <div class="footer-menu" style="    z-index: 100000;"
+                            [ngClass]="view_chat_now=='cart' || view_chat_now== 'chat'?'card-page-open':''">
+
+                            <div class="footer-view" *ngIf="view_chat_now !='cart'">
+                                <div class="view-page">
+                                    <!-- <div class="prodcut-list" *ngIf="view_chat_now=='product'">
+                                        <app-listproduct *ngIf="token_details !=null"
+                                            [data]="token_details"></app-listproduct>
+                                    </div> -->
+                                    <div class="chat-view" *ngIf="view_chat_now=='chat'">
+                                        <app-chatcomponent *ngIf="view_chat_now && token_details !=null" [data]="id"
+                                            [sub]="token_details">
+                                        </app-chatcomponent>
+                                    </div>
+
+                                </div>
+                                <div class="icons-page">
+                                    <ol class="right-icon-fonts">
+                                        <li style="position: relative;">
+                                            <a (click)="view_change('cart')" style="padding: 13px 14px;">
+                                                <span *ngIf="cartCount !=0" class="chat-count"> {{cartCount}}</span>
+                                                <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M1 8.61785L8.34687 1.27015C8.7079 0.909949 9.2921 0.909949 9.65231 1.27015L17 8.61785M2.84615 6.77169V15.0794C2.84615 15.5889 3.25969 16.0025 3.76923 16.0025H7.15385V12.0025C7.15385 11.4929 7.56738 11.0794 8.07692 11.0794H9.92308C10.4326 11.0794 10.8462 11.4929 10.8462 12.0025V16.0025H14.2308C14.7403 16.0025 15.1538 15.5889 15.1538 15.0794V6.77169M5.92308 16.0025H12.6923"
+                                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li style="position: relative;">
+                                            <span *ngIf="chatCount !=0" class="chat-count"> {{chatCount}}</span>
+                                            <a (click)="view_change('chat')"
+                                                [ngClass]="view_chat_now=='chat'?'active-icons':''">
+                                                <svg *ngIf="view_chat_now !='chat'" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.0169 0C10.4432 0 8.88501 0.310375 7.43115 0.913405C5.97729 1.51643 4.65628 2.40031 3.54355 3.51456C1.29628 5.7649 0.033776 8.81701 0.033776 11.9995C0.0233002 14.7703 0.981391 17.4575 2.74196 19.5951L0.345337 21.995C0.179062 22.1638 0.0664254 22.378 0.0216395 22.6108C-0.0231463 22.8436 0.00192556 23.0844 0.0936916 23.303C0.193221 23.5189 0.354569 23.7003 0.557254 23.8242C0.75994 23.9481 0.994823 24.0089 1.23209 23.9989H12.0169C15.195 23.9989 18.243 22.7347 20.4902 20.4844C22.7375 18.234 24 15.1819 24 11.9995C24 8.81701 22.7375 5.7649 20.4902 3.51456C18.243 1.26423 15.195 0 12.0169 0ZM12.0169 21.599H4.12002L5.23445 20.4831C5.45763 20.2583 5.58291 19.9541 5.58291 19.6371C5.58291 19.3201 5.45763 19.016 5.23445 18.7912C3.66536 17.2217 2.68824 15.156 2.46957 12.946C2.2509 10.736 2.8042 8.51843 4.03521 6.67113C5.26622 4.82383 7.09877 3.46108 9.22065 2.81504C11.3425 2.16901 13.6225 2.27966 15.672 3.12816C17.7215 3.97665 19.4139 5.51049 20.4607 7.46834C21.5075 9.42619 21.8441 11.6869 21.413 13.8654C20.9819 16.0439 19.8099 18.0053 18.0966 19.4154C16.3833 20.8256 14.2347 21.5973 12.0169 21.599Z"
+                                                        fill="black" />
+                                                </svg>
+                                                <svg *ngIf="view_chat_now=='chat'" width="16" height="16"
+                                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.01126 0C6.96216 0 5.92334 0.206635 4.9541 0.608107C3.98486 1.00958 3.10419 1.59802 2.36237 2.33985C0.864186 3.83803 0.0225174 5.87 0.0225174 7.98874C0.0155335 9.83345 0.654261 11.6225 1.82797 13.0456L0.230225 14.6434C0.119375 14.7557 0.0442836 14.8984 0.0144264 15.0533C-0.0154309 15.2083 0.00128371 15.3687 0.062461 15.5141C0.128814 15.6579 0.236379 15.7787 0.371503 15.8612C0.506627 15.9437 0.663215 15.9841 0.821391 15.9775H8.01126C10.13 15.9775 12.162 15.1358 13.6602 13.6376C15.1583 12.1395 16 10.1075 16 7.98874C16 5.87 15.1583 3.83803 13.6602 2.33985C12.162 0.841669 10.13 0 8.01126 0ZM8.01126 14.3797H2.74668L3.48963 13.6368C3.63842 13.4871 3.72194 13.2846 3.72194 13.0736C3.72194 12.8625 3.63842 12.66 3.48963 12.5104C2.44357 11.4655 1.79216 10.0902 1.64638 8.61889C1.5006 7.14757 1.86947 5.67121 2.69014 4.44136C3.51081 3.2115 4.73251 2.30424 6.1471 1.87414C7.56168 1.44403 9.08164 1.5177 10.448 2.0826C11.8144 2.64749 12.9426 3.66865 13.6405 4.97211C14.3384 6.27556 14.5627 7.78067 14.2753 9.231C13.9879 10.6813 13.2066 11.9871 12.0644 12.926C10.9222 13.8648 9.48979 14.3786 8.01126 14.3797Z"
+                                                        fill="white" />
+                                                </svg>
+
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="product-detail-view " [ngClass]="open_product_view !=null ?'show_box':''">
+    <div class="empty-space" (click)="close_product_view()">
+
+    </div>
+    <div class="product-view" *ngIf="open_product_view !=null">
+        <div class="down-icon">
+            <a (click)="close_product_view()">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 1L8.5 8.5L0.999999 1" stroke="#939393" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        </div>
+        <app-productdetailview *ngIf="open_product_view !=null" [data]="open_product_view"></app-productdetailview>
+
+        <button class="add-to-cart" (click)="add_to_cart_view(open_product_view)" *ngIf="open_product_view.cartQTY ==0">
+            Add to Cart</button>
+    </div>
+
+</div>

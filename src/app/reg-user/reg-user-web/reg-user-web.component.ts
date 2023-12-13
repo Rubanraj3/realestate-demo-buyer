@@ -34,7 +34,7 @@ export class RegUserWebComponent implements OnInit {
       console.log(this.form.value)
       this.service.create_user(this.form.value,this.id).subscribe((res:any)=>{
         localStorage.setItem('buyerVerfiyId',res._id)
-        this.router.navigateByUrl('property/'+this.id)
+        this.router.navigateByUrl('property')
         this.submitted=false
       })
     }

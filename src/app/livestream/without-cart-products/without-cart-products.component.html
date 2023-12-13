@@ -1,0 +1,31 @@
+<div class="current-live-box" [formGroup]="products">
+    <ng-container *ngIf="token_details !=null" formArrayName="products">
+        <ng-container *ngFor="let item of this.addpro.controls;index as i">
+            <div [formGroupName]="i" class="stream-cart" *ngIf="!item.get('add_to_cart')?.value">
+                <div class="product-details">
+                    <div class="row" style="padding: 0;margin:0">
+                        <div class="col-3 image-view-medium" style="margin:0">
+                            <img [src]="baseURl+'/'+item.get('image')?.value" alt="">
+                        </div>
+                        <div class="col-5 title-views" style="padding: 0;margin:0">
+                            <p class="product-title">{{item.get('productTitle')?.value}}</p>
+                        </div>
+                        <div class="col-4 price-views" style="padding: 0;margin:0">
+                            <p class="price">{{item.get('offerPrice')?.value|currency
+                                :"INR"}} / <sub
+                                    style="text-decoration:line-through;">{{item.get('marketPlace')?.value|currency
+                                    :"INR"}}</sub></p>
+                            <div class="add-t-cart" #view_change>
+                                <button class="add-to-cart-icon" (click)="add_to_cart(item,view_change)"
+                                    *ngIf="!item.get('add_to_cart')?.value && item.get('allowAdd_to_cart')?.value">Add
+                                    to
+                                    cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</div>

@@ -1,0 +1,97 @@
+<div class="product-details" *ngIf="streamDetails !+null">
+    <div class="inner-box">
+        <div class="banner-images">
+            <div id="demo-images" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" *ngFor="let item of streamDetails.imageArr; index as i"
+                        data-bs-target="#demo-images" [attr.data-bs-slide-to]="i"
+                        [ngClass]="i ==0?'active':''"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item " *ngFor="let item of streamDetails.imageArr; index as i"
+                        [ngClass]="i ==0?'active':''">
+                        <img src="{{item}}" alt="Los Angeles" class="d-block" style="width:100%">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#demo-images" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#demo-images" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="content-view">
+            <div class="row" style="margin: 0;">
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Property type</h6>
+                        <h6>{{streamDetails.propertyType}}</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Bhk or Building Type / Sqft</h6>
+                        <h6>
+                            {{streamDetails.bhkBuilding}}
+                        </h6>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="view-conent">
+                        <h6>Price Expectation</h6>
+                        <h6>{{streamDetails.priceExp|currency:"INR"}}</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Furnishing Status</h6>
+                        <h6>{{streamDetails.furnitionStatus}}</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Tenant Type</h6>
+                        <h6>{{streamDetails.tenantType}}</h6>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="view-conent">
+                        <h6>Location</h6>
+                        <h6>{{streamDetails.location}}</h6>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="view-conent">
+                        <h6>Description</h6>
+                        <h6>{{streamDetails.Description}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="intrested" style="background-color: #DEE4F0;">
+        <button (click)="interest()" *ngIf="!streamDetails.intrested">
+            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M4.59631 7.84444C5.25764 7.84444 5.85415 7.47443 6.26277 6.94844C6.8997 6.12679 7.69924 5.44863 8.61025 4.95733C9.20348 4.63876 9.71794 4.16421 9.96656 3.53452C10.1412 3.09336 10.2308 2.62255 10.2308 2.14738V1.62222C10.2308 1.4572 10.2956 1.29893 10.411 1.18224C10.5264 1.06556 10.6829 1 10.8461 1C11.3358 1 11.8054 1.19667 12.1516 1.54673C12.4978 1.8968 12.6923 2.3716 12.6923 2.86667C12.6923 3.8224 12.479 4.72753 12.0991 5.53641C11.8808 5.99935 12.1869 6.6 12.6939 6.6H15.2589C16.1007 6.6 16.8548 7.17576 16.9442 8.02281C16.9811 8.37292 17 8.728 17 9.08889C17.0034 11.359 16.2361 13.5616 14.8265 15.3285C14.5081 15.7284 14.0166 15.9333 13.5095 15.9333H10.2144C9.81805 15.9333 9.42338 15.8686 9.04677 15.7425L6.49169 14.8797C6.11516 14.7531 5.72091 14.6887 5.3241 14.6889H3.99815M3.99815 14.6889C4.06626 14.859 4.1401 15.0249 4.21969 15.1883C4.38133 15.5202 4.15569 15.9333 3.79056 15.9333H3.04554C2.3161 15.9333 1.64 15.5036 1.42749 14.7984C1.1433 13.8553 0.999233 12.8748 1 11.8889C1 10.6005 1.24205 9.37013 1.68185 8.24018C1.93293 7.59804 2.57292 7.22222 3.25641 7.22222H4.12041C4.50769 7.22222 4.73169 7.6835 4.53067 8.01867C3.82986 9.18509 3.46025 10.5241 3.46236 11.8889C3.46236 12.8795 3.65272 13.8244 3.99898 14.6889H3.99815ZM10.8461 6.6H12.6923"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Interest
+        </button>
+        <button (click)="interest()" *ngIf="streamDetails.intrested" style="background-color: white;color: black;">
+            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3.59631 6.84444C4.25764 6.84444 4.85415 6.47443 5.26277 5.94844C5.8997 5.12679 6.69924 4.44863 7.61025 3.95733C8.20348 3.63876 8.71795 3.16421 8.96656 2.53452C9.14117 2.09336 9.23084 1.62255 9.23076 1.14738V0.622222C9.23076 0.457199 9.2956 0.298934 9.41101 0.182245C9.52641 0.0655553 9.68294 0 9.84615 0C10.3358 0 10.8054 0.196666 11.1516 0.546734C11.4978 0.896802 11.6923 1.3716 11.6923 1.86667C11.6923 2.8224 11.479 3.72753 11.0991 4.53641C10.8808 4.99935 11.1869 5.6 11.6939 5.6H14.2589C15.1007 5.6 15.8548 6.17576 15.9442 7.02281C15.9811 7.37292 16 7.728 16 8.08889C16.0034 10.359 15.2361 12.5616 13.8265 14.3285C13.5081 14.7284 13.0166 14.9333 12.5095 14.9333H9.21435C8.81805 14.9333 8.42338 14.8686 8.04677 14.7425L5.49169 13.8797C5.11516 13.7531 4.72091 13.6887 4.3241 13.6889H2.82537M9.84615 5.6H11.6923H9.84615ZM2.82537 13.6889C2.89347 13.859 2.96732 14.0249 3.04691 14.1883C3.20855 14.5202 2.98291 14.9333 2.61778 14.9333H2.04554C1.3161 14.9333 0.640002 14.5036 0.42749 13.7984C0.1433 12.8553 -0.000767234 11.8748 3.07269e-06 10.8889C3.07269e-06 9.60047 0.242054 8.37013 0.681849 7.24018C0.932925 6.59804 1.57292 6.22222 2.25641 6.22222H2.82899C3.21627 6.22222 3.44027 6.6835 3.23924 7.01867C2.53843 8.18509 2.46025 9.5241 2.46236 10.8889C2.46236 11.8795 2.47911 12.8244 2.82537 13.6889Z"
+                    fill="#394867" />
+            </svg>
+
+            Interested
+        </button>
+    </div>
+
+
+</div>
