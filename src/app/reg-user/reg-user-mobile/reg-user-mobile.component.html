@@ -26,40 +26,47 @@
         <p><span class="bold-white">Dream</span> Property Here..</p>
       </div>
     </div>
-    <div class="content-2">
+    <div class="content-2" [formGroup]="form" >
       <h3 >Log in</h3>
       <div class="form">
        
         <div class="input">
           <label for="mobile">Name:</label>
           <input
-
-            placeholder="Enter Your Name"
-           
-            type="email"
-            id="mobile"
-          />
+          type="text"
+          [class.error-box]="submitted && form.get('name')?.invalid"
+          formControlName="name"
+          placeholder="Enter Name"
+         
+        />
         </div>
         <!-- <p style="font-size: 14px;color: red;" *ngIf="emailSubmit && loginForm.get('email')?.invalid">
           Email is required !
         </p> -->
         <div class="input pas">
           <label for="ps">Number:</label>
-        <input type="text">
+          <input
+          onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+          type="tel"
+          [class.error-box]="submitted && form.get('phoneNumber')?.invalid"
+          formControlName="phoneNumber"
+            placeholder="Enter Mobile Number"
+          
+           
+          />
           
         </div>
-        <span routerLink="/buyer/forget" class="small">Forgot Password!</span>
-        <!-- <div class="error-msg">
-          <p *ngIf="emailSubmit && loginForm.get('password')?.invalid">
-            Password is required !
+
+        <div class="error-msg">
+          <p *ngIf="submitted && form.get('phoneNumber')?.hasError('pattern')">
+            Invalid Number!
           </p>
-          <p *ngIf="notfound">Please Enter a Valid Password</p>
-          <p *ngIf="Emailnotfound">Enter a Registered Email Id</p>
-        </div> -->
-        <button  class="bttn">Submit</button>
+         
+        </div>
+        <button  (click)="submit()" class="bttn">Submit</button>
       </div>
       <div class="bottom">
-        <p>Don't Have a account? <span [routerLink]="['register']" class="blue-bold">Register</span></p>
+        <!-- <p>Don't Have a account? <span [routerLink]="['register']" class="blue-bold">Register</span></p> -->
       </div>
     </div>
   </div>

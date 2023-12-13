@@ -280,4 +280,6 @@
   .post-your-property>svg{
     margin-left: 5px;
   }
-  
+  input:invalid{
+    background-color: red;
+  }
