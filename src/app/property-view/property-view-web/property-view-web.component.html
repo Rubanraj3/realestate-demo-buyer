@@ -32,7 +32,7 @@
   </div>
 </header>
 
-<div class="containerr" *ngIf="stream !=null">
+<div class="containerr" *ngIf="data !=null">
   <div class="ad">
     <img src="../../../assets/images/ad-post.png" width="100%" />
   </div>
@@ -87,11 +87,14 @@
                 <h5>Stream Name</h5>
                 <p> 06.30pm </p>
               </span>
-              <span class="bttns">
-                <button *ngIf="stream.golive && data.status =='On-Going' && data.end > now_time && data.end > now_time"
-                  (click)="go_live()">Live</button>
-                <span *ngIf="data.status =='Completed' || data.end < now_time">Completed</span>
-              </span>
+              <ng-container *ngIf="stream !=null">
+                <span class="bttns">
+                  <button
+                    *ngIf="stream.golive && data.status =='On-Going' && data.end > now_time && data.end > now_time"
+                    (click)="go_live()">Live</button>
+                  <span *ngIf="data.status =='Completed' || data.end < now_time">Completed</span>
+                </span>
+              </ng-container>
             </td>
           </tr>
           <tr class="line-2">
