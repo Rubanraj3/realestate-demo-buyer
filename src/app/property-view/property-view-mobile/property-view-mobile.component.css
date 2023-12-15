@@ -96,8 +96,9 @@
   }
   h5{
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
   }
   p{
+    color: rgba(57, 72, 103, 1);
     font-size: 13px;
   }

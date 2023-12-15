@@ -24,34 +24,19 @@
         </div>
         <div class="content-view">
             <div class="row" style="margin: 0;">
-                <div class="col-6">
-                    <div class="view-conent">
-                        <h6>Property type</h6>
-                        <h6>{{streamDetails.propertyType}}</h6>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="view-conent">
-                        <h6>Bhk or Building Type / Sqft</h6>
-                        <h6>
-                            {{streamDetails.bhkBuilding}}
-                        </h6>
-
-                    </div>
-                </div>
-                <div class="col-12">
+                <div class="col-12" *ngIf="streamDetails.postType !== 'Rent'">
                     <div class="view-conent">
                         <h6>Price Expectation</h6>
                         <h6>{{streamDetails.priceExp|currency:"INR"}}</h6>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6"  *ngIf="streamDetails.postType == 'Rent'">
                     <div class="view-conent">
-                        <h6>Furnishing Status</h6>
-                        <h6>{{streamDetails.furnitionStatus}}</h6>
+                        <h6>Price Expectation</h6>
+                        <h6>{{streamDetails.priceExp|currency:"INR"}}</h6>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6"  *ngIf="streamDetails.postType == 'Rent'">
                     <div class="view-conent">
                         <h6>Tenant Type</h6>
                         <h6>{{streamDetails.tenantType}}</h6>
@@ -63,6 +48,36 @@
                         <h6>{{streamDetails.location}}</h6>
                     </div>
                 </div>
+                <div class="col-6"  >
+                    <div class="view-conent">
+                        <h6>Property type</h6>
+                        <h6>{{streamDetails.propertyType}}</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Bhk or Building Type</h6>
+                        <h6>
+                            {{streamDetails.bhkBuilding}}
+                        </h6>
+
+                    </div>
+                </div>
+          
+            
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Furnishing Status</h6>
+                        <h6>{{streamDetails.furnitionStatus}}</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="view-conent">
+                        <h6>Build up area</h6>
+                        <h6>{{streamDetails.sqft}}</h6>
+                    </div>
+                </div>
+            
                 <div class="col-12">
                     <div class="view-conent">
                         <h6>Description</h6>

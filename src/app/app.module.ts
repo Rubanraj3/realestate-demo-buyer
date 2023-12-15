@@ -10,7 +10,9 @@ import { PropertyViewMobileComponent } from './property-view/property-view-mobil
 import { PropertyViewComponent } from './property-view/property-view.component';
 import { RegUserComponent } from './reg-user/reg-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from  '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from  '@angular/common/http';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptor } from './interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { HttpClientModule } from  '@angular/common/http';
     PropertyViewWebComponent,
     PropertyViewMobileComponent,
     PropertyViewComponent,
-    RegUserComponent
+    RegUserComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,9 @@ import { HttpClientModule } from  '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
