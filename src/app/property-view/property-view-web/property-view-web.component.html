@@ -33,14 +33,14 @@
 </header>
 
 <div class="containerr" *ngIf="stream !=null">
-  <div class="ad">
+  <!-- <div class="ad">
     <img src="../../../assets/images/ad-post.png" width="100%" />
-  </div>
+  </div> -->
   <div class="main">
     <nav>
       <ul>
-        <li>Residential ></li>
-        <li>Rent</li>
+        <li>{{data.category}} ></li>
+        <li>{{data.postType}}</li>
       </ul>
     </nav>
     <div class="top-section">
@@ -49,7 +49,10 @@
           <path d="M7.27179 16.1559L20 28.0722L16.3641 31.4762L0 16.1559L16.3641 0.835693L20 4.23965L7.27179 16.1559Z"
             fill="#473B32" fill-opacity="0.6" />
         </svg>
-        <p>thi is address</p>
+        <p>
+          {{ data.category }} {{ data.category =='Commercial'? 'Property': 'House'}} For {{ data.postType }} in
+          {{ data.location }}
+        </p>
         <!-- <p>
               {{ data.BHKType }} House For {{ data.Type }} in,
               {{ data.formatedAddress }}
@@ -82,11 +85,14 @@
         </div>
         <table>
           <tr>
-            <td class="line-1">
+            <td class="line-1" >
               <span>
                 <h5>Stream Name</h5>
-                <p>06.30pm</p>
+                <p *ngIf="!data.start">Stream Time</p>
+                <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
               </span>
+              <span></span>
+              <span></span>
               <span class="bttns">
                 <button *ngIf="stream.golive && data.status =='On-Going' && data.end > now_time && data.end > now_time"
                   (click)="go_live()">Live</button>
@@ -94,47 +100,85 @@
               </span>
             </td>
           </tr>
-          <tr class="line-2">
-            <td>
-              <h5>Rent Expectation</h5>
-              <p>{{data.priceExp}}</p>
-            </td>
-            <td colspan="3">
-              <h5>Address</h5>
-              <p>{{data.location}}</p>
-            </td>
-          </tr>
-          <tr class="line-3">
-            <td>
-              <p>Property type</p>
-              <h5>{{data.propertyType}}</h5>
-            </td>
-            <td>
-              <p>Bhk or Building Type / Sqft</p>
-              <h5>{{data.bhkBuilding}}</h5>
-            </td>
-            <td>
-              <p>Furnishing status</p>
-              <h5>{{data.furnitionStatus}}</h5>
-            </td>
-            <td>
-              <p>Tenat Type</p>
-              <h5>{{data.tenantType ? data.tenantType : '---'}}</h5>
-            </td>
-
-          </tr>
-          <tr>
-            <td colspan="3" style="align-items: baseline;
-                  padding: 10px;height: auto;">
-              <h5>Description</h5>
-              <p>{{ data.Description }} </p>
-            </td>
-          </tr>
+          <ng-container *ngIf="data.postType!=='Sale'">
+            <tr>
+              <td>
+                <p>Location</p>
+                <h5>{{data.location}}</h5>
+              </td>
+            </tr>
+            <tr class="line-4">
+              <td>
+                <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+                <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+              </td>
+              <td>
+                <p>Built up area</p>
+                <h5>{{data.sqft}}.sqft</h5>
+              </td>
+              <td>
+                <p>Tenat Type</p>
+                <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
+              </td>
+            </tr>
+            <tr class="line-4">
+              <td>
+                <p>Property type</p>
+                <h5>{{data.propertyType}}</h5>
+              </td>
+              <td>
+                <p>Bhk or Building Type</p>
+                <h5>{{data.bhkBuilding}}</h5>
+              </td>
+              <td>
+                <p>Furnishing status</p>
+                <h5>{{data.furnitionStatus}}</h5>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="data.postType=='Sale'">
+            <tr class="line-2">
+              <td>
+                <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+                <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+              </td>
+              <td colspan="3">
+                <p>Location</p>
+                <h5>{{data.location}}</h5>
+              </td>
+            </tr>
+         
+            <tr class="line-3" >
+              <td>
+                <p>Property type</p>
+                <h5>{{data.propertyType}}</h5>
+              </td>
+              <td>
+                <p>Bhk or Building Type / Sqft</p>
+                <h5>{{data.bhkBuilding}}</h5>
+              </td>
+              <td>
+                <p>Furnishing status</p>
+                <h5>{{data.furnitionStatus}}</h5>
+              </td>
+              <td>
+                <p>Built up area</p>
+                <h5>{{data.sqft}}.sqft</h5>
+              </td>
+            </tr>
+          </ng-container>
+            <tr>
+              <td colspan="3" style="padding: 10px;align-items: baseline;
+                       padding-left: 6%;height: auto;">
+                <h5>Description</h5>
+                <p>{{ data.Description }} </p>
+              </td>
+            </tr>
         </table>
       </div>
     </div>
   </div>
-  <div class="ad">
+  <!-- <div class="ad">
     <img src="../../../assets/images/ad-post.png" width="100%" />
-  </div>
+  </div> -->
 </div>

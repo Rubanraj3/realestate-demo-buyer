@@ -2,7 +2,7 @@
 <div class="main">
   <div class="top-section">
     <div class="back" style="cursor: pointer !important">
-      <svg
+      <!-- <svg
         width="15"
         height="25"
         viewBox="0 0 20 32"
@@ -14,8 +14,9 @@
           fill="#473B32"
           fill-opacity="0.6"
         />
-      </svg>
-      <p>thi is address</p>
+      </svg> -->
+      <p style="margin: 0;padding: 10px;">{{ data.category }} {{ data.category =='Commercial'? 'Property': 'House'}} For {{ data.postType }} in
+        {{ data.location }}</p>
       <!-- <p>
           {{ data.BHKType }} House For {{ data.Type }} in,
           {{ data.formatedAddress }}
@@ -65,48 +66,63 @@
       <table>
         <tr>
           <td class="line-1">
-            <span
-              ><h5>Stream Name</h5>
-              <p>06.30pm</p></span
-            >
-            <span class="bttns"><button>Live</button></span>
+            <span>
+              <h5>Stream Name</h5>
+              <p *ngIf="!data.start">Stream Time</p>
+                <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
+            </span>
+            <span class="bttns">
+              <button *ngIf="stream.golive && data.status =='On-Going' && data.end > now_time && data.end > now_time"
+                (click)="go_live()">Live</button>
+              <span *ngIf="data.status =='Completed' || data.end < now_time">Completed</span>
+            </span>
           </td>
         </tr>
-        <tr>
+        <tr *ngIf="data.postType=='Sale'">
           <td>
-            <h5>Rent Expectation</h5>
-            <p>{{data.priceExp}}</p>
+            <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+            <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+          </td>
+        </tr>
+        <tr *ngIf="data.postType!=='Sale'"  class="line-3">
+          <td>
+            <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+            <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+          </td>
+          <td>
+            <p>Tenat Type</p>
+            <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
           </td>
         </tr>
         <tr>
           <td colspan="3">
-            <h5>Address</h5>
-            <p>{{data.location}}</p>
+            <p>Location</p>
+            <h5>{{data.location}}</h5>
           </td>
         </tr>
         <tr class="line-3">
           <td>
             <p>Property type</p>
-              <h5>{{data.propertyType}}</h5>
+            <h5>{{ data.propertyType }}</h5>
           </td>
           <td>
-            <p>Bhk or Building Type / Sqft</p>
-              <h5>{{data.bhkBuilding}}</h5>
+            <p>Bhk or Building Type</p>
+            <h5>{{ data.bhkBuilding }}</h5>
           </td>
         </tr>
-        <tr class="line-3">
+        <tr class="line-3" >
           <td>
             <p>Furnishing status</p>
-              <h5>{{data.furnitionStatus}}</h5>
+            <h5>{{ data.furnitionStatus }}</h5>
           </td>
           <td>
-            <p>Tenat Type</p>
-            <h5>{{data.tenantType ? data.tenantType : '---'}}</h5>
+            <p>Built up area</p>
+            <h5>{{data.sqft}}.sqft</h5>
           </td>
         </tr>
         <tr>
           <td colspan="3" style="align-items: baseline;
-                padding: 10px;height: auto;">
+          padding: 10px; height: auto;">
             <h5>Description</h5>
             <p>{{ data.Description }} </p>
           </td>

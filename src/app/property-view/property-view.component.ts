@@ -14,7 +14,7 @@ export class PropertyViewComponent implements OnInit {
   }
   @HostListener('window:resize', ['$event'])
   onResize() {
-    console.log(window.innerWidth)
+    // console.log(window.innerWidth)
    this.show = window.innerWidth > 800;
   
   }
