@@ -48,14 +48,15 @@
 
 
 .view-conent {
-    height: 73px;
+    height: auto;
+    padding: 10px;
+    min-height: 73px;
     box-shadow: 1px 1px 2px 0px #B4B4B4 inset;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-
 .view-conent h6:first-child{
     color: #394867;
     font-weight: 300;

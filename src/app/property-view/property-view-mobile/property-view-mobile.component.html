@@ -74,6 +74,7 @@
             <span class="bttns">
               <button *ngIf="stream.golive && data.status =='On-Going' && data.end > now_time && data.end > now_time"
                 (click)="go_live()">Live</button>
+                <span *ngIf="data.status =='Ready' || data.end > now_time">Waiting</span>
               <span *ngIf="data.status =='Completed' || data.end < now_time">Completed</span>
             </span>
           </td>
@@ -90,7 +91,7 @@
             <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
           </td>
           <td>
-            <p>Tenat Type</p>
+            <p>Tenant Type</p>
             <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
           </td>
         </tr>

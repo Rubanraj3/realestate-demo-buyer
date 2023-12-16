@@ -48,7 +48,9 @@
 
 
 .view-conent {
-    height: 73px;
+    height: auto;
+    padding: 10px;
+    min-height: 73px;
     box-shadow: 1px 1px 2px 0px #B4B4B4 inset;
     display: flex;
     align-items: center;

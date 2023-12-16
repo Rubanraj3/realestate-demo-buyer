@@ -26,14 +26,14 @@
             <div class="row" style="margin: 0;">
                 <div class="col-12" *ngIf="streamDetails.postType !== 'Rent'">
                     <div class="view-conent">
-                        <h6>Price Expectation</h6>
-                        <h6>{{streamDetails.priceExp|currency:"INR"}}</h6>
+                        <h6>{{streamDetails.postType=='Sale'? 'Price' :'Rent'}} Expectation</h6>
+                        <h6>{{streamDetails.priceExp|currency:"INR":true:'0.0-0'}}</h6>
                     </div>
                 </div>
                 <div class="col-6"  *ngIf="streamDetails.postType == 'Rent'">
                     <div class="view-conent">
-                        <h6>Price Expectation</h6>
-                        <h6>{{streamDetails.priceExp|currency:"INR"}}</h6>
+                        <h6>{{streamDetails.postType=='Sale'? 'Price' :'Rent'}} Expectation</h6>
+                        <h6>{{streamDetails.priceExp|currency:"INR":true:'0.0-0'}}</h6>
                     </div>
                 </div>
                 <div class="col-6"  *ngIf="streamDetails.postType == 'Rent'">
@@ -74,7 +74,7 @@
                 <div class="col-6">
                     <div class="view-conent">
                         <h6>Build up area</h6>
-                        <h6>{{streamDetails.sqft}}</h6>
+                        <h6>{{streamDetails.sqft}}.sqft</h6>
                     </div>
                 </div>
             
