@@ -400,5 +400,6 @@ nav ul li{
     font-size: 15px;
   }
   p{
+    word-break: break-all;
     color: rgba(57, 72, 103, 1);
   }

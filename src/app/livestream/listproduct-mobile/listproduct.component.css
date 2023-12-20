@@ -16,7 +16,9 @@
     height: 100%;
     object-fit: cover;
 }
-
+h6{
+    word-break: break-all;
+}
 
 .product-details {
     position: relative;
