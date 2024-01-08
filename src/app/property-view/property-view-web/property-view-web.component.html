@@ -75,15 +75,14 @@
             <td class="line-1" >
               <span>
                 <h5>Property Live</h5>
-                <p *ngIf="!data.start">Stream Time</p>
-                <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
+                <p *ngIf="streamhis.start">{{ streamhis.start|date:'d/M/yy, h:mm a'}} - {{streamhis.end |date:"hh:mm a"}}</p>
               </span>
               <span></span>
               <span></span>
               <span class="bttns">
                 <button *ngIf="stream.golive && data.status =='On-Going' && data.end > now_time && data.end > now_time"
                   (click)="go_live()">Live</button>
-                <span *ngIf="data.status =='Completed' && data.end < now_time">Completed</span>
+                <span *ngIf="streamhis.status =='Completed' && streamhis.end < now_time">Completed</span>
                 <span *ngIf="data.status =='Ready' && data.start > now_time">Waiting</span>
                 <span *ngIf="data.status =='Ready' && data.start < now_time">Host Delay</span>
               </span>

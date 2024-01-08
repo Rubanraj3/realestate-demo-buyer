@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocketioService } from 'src/app/livestream/socketio.service';
 import { AuthserviceService } from 'src/app/service/authservice.service';
@@ -9,7 +9,7 @@ import { timer } from 'rxjs';
   templateUrl: './property-view-web.component.html',
   styleUrls: ['./property-view-web.component.css']
 })
-export class PropertyViewWebComponent implements OnInit {
+export class PropertyViewWebComponent implements OnInit, OnDestroy {
 
   id: any
   streamid: any
@@ -34,6 +34,7 @@ export class PropertyViewWebComponent implements OnInit {
     this.get_prop()
   }
   stream: any;
+  streamhis: any;
   get_prop() {
     let data = {
       streamID: this.streamid,
@@ -49,6 +50,8 @@ export class PropertyViewWebComponent implements OnInit {
       this.data = res.post;
       console.log(res)
       this.stream = res.token;
+      this.streamhis = res.stream;
+
     })
   }
   go_live() {
@@ -56,5 +59,9 @@ export class PropertyViewWebComponent implements OnInit {
       console.log(res)
       this.router.navigateByUrl("/stream?id=" + res._id)
     })
+  }
+
+  ngOnDestroy(): void {
+    this.coundonw.unsubscribe()
   }
 }

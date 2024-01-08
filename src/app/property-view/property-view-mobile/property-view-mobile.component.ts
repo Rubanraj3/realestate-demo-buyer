@@ -32,6 +32,8 @@ export class PropertyViewMobileComponent {
      this.get_prop()
    }
    stream: any=[]
+   streamhis: any;
+
     get_prop(){
       let data = {
         streamID: this.streamid,
@@ -47,6 +49,8 @@ export class PropertyViewMobileComponent {
         this.data = res.post;
         console.log(res)
         this.stream = res.token;
+        this.streamhis = res.stream;
+
       })
     }
     go_live() {
