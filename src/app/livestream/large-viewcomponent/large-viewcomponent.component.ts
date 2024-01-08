@@ -102,7 +102,7 @@ export class LargeViewcomponentComponent implements OnInit {
   userId: any;
 
   get_controls(channel: any) {
-    this.web.get_controls_details(channel).subscribe(msg => {
+    this.web.get_controls_details(channel).subscribe((msg:any) => {
       this.mute_video = msg.video;
       this.mute_audio = msg.audio;
     });
@@ -123,7 +123,7 @@ export class LargeViewcomponentComponent implements OnInit {
       this.web.main_host_end_strem(res.demotoken.channel).subscribe((res: any) => {
         this.countDown?.unsubscribe()
         this.logout();
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/property");
       })
       this.web.getMessage_new_chat(this.token_details.demotoken.chennel).subscribe((res: any) => {
         if (this.view_chat_now != true) {
@@ -132,7 +132,7 @@ export class LargeViewcomponentComponent implements OnInit {
       })
       this.joinCall(res.demotoken);
 
-      this.web.getMessage_userCount(this.token_details.chennel).subscribe(msg => {
+      this.web.getMessage_userCount(this.token_details.chennel).subscribe((msg:any) => {
       });
     });
   }

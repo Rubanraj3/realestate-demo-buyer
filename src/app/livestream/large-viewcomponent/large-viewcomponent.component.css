@@ -562,3 +562,52 @@ p {
     align-items: center;
     border-radius: 8px;
 }
+
+
+header{
+    height: 76px;
+    background-color: var(--bgBlue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px 0 0;
+    background-image: url(../../../assets/images/build.png);
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+  }
+  header>.logo{
+  
+    height: 100%;
+    background-color: rgba(36, 45, 64, 0.336);
+    width: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header>.logo>img{
+    height: 40px;
+  }
+  header>div{
+    display: flex;
+  align-items: center;
+  }
+  header>div>.login-button{
+    background: white;
+  }
+  header>div>.register-button{
+    background:var(--bgligthBlue);
+  
+  }
+  header>div>button{
+
+    padding: 7px 10px;
+    margin: 0 5px;display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    border: none;
+    border-radius: 2px;
+  
+  }
